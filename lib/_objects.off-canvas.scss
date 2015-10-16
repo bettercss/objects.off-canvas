@@ -1,0 +1,154 @@
+// -----------------------------------------------------------------------------
+// OBJECTS.OFF-CANVAS
+// -----------------------------------------------------------------------------
+
+/**
+ * Use the space outside a browser’s viewport to hide elements until users need
+ * them.
+ *
+ * Credits:
+ * - https://github.com/zurb/foundation-apps/blob/26cc685c462165a32e3d585f8fdee2e938855ab1/scss/components/_off-canvas.scss
+ */
+
+
+
+
+
+// PREDEFINED VARIABLES
+// =============================================================================
+
+// Enable Features
+
+$bc-o-off-canvas-enable-layout: false !default;
+
+// Dimensions
+
+$bc-o-off-canvas-width:   90% !default;
+$bc-o-off-canvas-height:  90% !default;
+
+
+
+
+
+// LOCAL MIXINS
+// =============================================================================
+
+// Reset many specific off canvas properties. Used below.
+
+@mixin off-canvas-reset() {
+    transform: none;
+    position: relative;
+    width: auto;
+    height: auto;
+    z-index: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+}
+
+
+
+
+
+// BASE
+// =============================================================================
+
+/**
+ * Off Canvas Base
+ */
+
+.o-off-canvas {
+    position: fixed;
+    background-color: white;
+    @include bc-z-index('off-canvas');
+
+    &.is-active {
+        transform: translate(0, 0);
+    }
+
+}
+
+
+
+
+
+// BASE MODIFIERS
+// =============================================================================
+
+/**
+ * Off Canvas Position
+ *
+ * Position off canvas element outside a specific side of the viewport.
+ */
+
+.o-off-canvas--left {
+    width: $bc-o-off-canvas-width;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.o-off-canvas--right {
+    width: $bc-o-off-canvas-width;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+}
+
+.o-off-canvas--top {
+    width: 100%;
+    height: $bc-o-off-canvas-height;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+}
+
+.o-off-canvas--bottom {
+    width: 100%;
+    height: $bc-o-off-canvas-height;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+}
+
+
+
+
+
+// OFF CANVAS LAYOUT ITEMS
+// =============================================================================
+
+@if ($bc-o-off-canvas-enable-layout == true) {
+
+    /**
+     * Closely related to the layout object. Allows off canvas elements to behave
+     * like normal layout items when the viewport is large enough for them to fit.
+     *
+     * Example: class="o-off-canvas o-off-canvas--left o-off-canvas--overlay o-off-canvas--layout@s o-layout__item"
+     */
+
+    .o-off-canvas--layout\@t {
+        @include bc-media-query(t) {
+            @include off-canvas-reset();
+        }
+    }
+
+    .o-off-canvas--layout\@s {
+        @include bc-media-query(s) {
+            @include off-canvas-reset();
+        }
+    }
+
+    .o-off-canvas--layout\@m {
+        @include bc-media-query(m) {
+            @include off-canvas-reset();
+        }
+    }
+
+}
+
+
+
