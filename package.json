@@ -1,11 +1,12 @@
 {
   "name": "bettercss-objects-off-canvas",
   "description": "Off canvas object module for BetterCSS",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "style": "_index.scss",
   "files": [
     "_index.scss",
-    "lib"
+    "lib",
+    "docs"
   ],
   "repository": {
     "type": "git",
